@@ -6,6 +6,8 @@ import {
   protectedProcedure,
 } from "@/server/api/trpc";
 
+import { example } from "@/db/schema";
+
 export const exampleRouter = createTRPCRouter({
   hello: publicProcedure
     .input(z.object({ text: z.string() }))
@@ -15,8 +17,8 @@ export const exampleRouter = createTRPCRouter({
       };
     }),
 
-  getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.example.findMany();
+  getExample: publicProcedure.query(({ ctx }) => {
+    return ctx.db.select().from(example);
   }),
 
   getSecretMessage: protectedProcedure.query(() => {

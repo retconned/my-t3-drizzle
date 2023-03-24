@@ -1,14 +1,11 @@
-import { PrismaClient } from "@prisma/client";
+import { drizzle } from "drizzle-orm/mysql2";
+import mysql from "mysql2/promise";
 
-import { env } from "@/env.mjs";
+const poolConnection = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+});
 
-const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
-
-export const prisma =
-  globalForPrisma.prisma ||
-  new PrismaClient({
-    log:
-      env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
-  });
-
-if (env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+export const db = drizzle(poolConnection);
