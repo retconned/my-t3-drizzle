@@ -1,6 +1,28 @@
 # Create T3 App
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app` using [Drizzle-orm](https://github.com/drizzle-team/drizzle-orm).
+
+## Get started
+
+1. Copy and fill files
+
+```bash
+pnpm i
+cp .env.example .env
+cp drizzle.config.example.json drizzle.config.json
+```
+
+2. Push your schema changes
+
+```bash
+pnpm db:push
+```
+
+3. Start developing
+
+```bash
+pnpm dev
+```
 
 ## What's next? How do I make an app with this?
 
