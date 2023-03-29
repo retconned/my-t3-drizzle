@@ -4,12 +4,11 @@ This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3
 
 ## Get started
 
-1. Copy and fill files
+1. Copy and fill secrets
 
 ```bash
 pnpm i
 cp .env.example .env
-cp drizzle.config.example.json drizzle.config.json
 ```
 
 2. Push your schema changes

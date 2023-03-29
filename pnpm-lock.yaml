@@ -1,7 +1,6 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@next-auth/prisma-adapter': ^1.0.5
   '@tanstack/react-query': ^4.20.2
   '@trpc/client': ^10.9.0
   '@trpc/next': ^10.9.0
@@ -16,8 +15,9 @@ specifiers:
   '@typescript-eslint/parser': ^5.53.0
   autoprefixer: ^10.4.7
   cuid: ^3.0.0
-  drizzle-kit: 0.17.0-edc772a
-  drizzle-orm: ^0.22.0
+  dotenv: ^16.0.3
+  drizzle-kit: 0.17.1-6474464
+  drizzle-orm: ^0.23.2
   eslint: ^8.34.0
   eslint-config-next: ^13.2.1
   mysql2: ^3.2.0
@@ -34,14 +34,14 @@ specifiers:
   zod: ^3.20.6
 
 dependencies:
-  '@next-auth/prisma-adapter': 1.0.5_next-auth@4.20.1
   '@tanstack/react-query': 4.28.0_biqbaboplfbrettd7655fr4n2y
   '@trpc/client': 10.18.0_@trpc+server@10.18.0
   '@trpc/next': 10.18.0_fk7ybuwqrs7skzzxcj6wjc5c3i
   '@trpc/react-query': 10.18.0_rcvfzig2xktluz4p7kugxqlbwi
   '@trpc/server': 10.18.0
   cuid: 3.0.0
-  drizzle-orm: 0.22.0_mysql2@3.2.0
+  dotenv: 16.0.3
+  drizzle-orm: 0.23.2_mysql2@3.2.0
   mysql2: 3.2.0
   next: 13.2.4_biqbaboplfbrettd7655fr4n2y
   next-auth: 4.20.1_ld2jel3hspngo3u5lti2kgl2sq
@@ -59,7 +59,7 @@ devDependencies:
   '@typescript-eslint/eslint-plugin': 5.56.0_iskin7c6dxqunwflhstekcjqmq
   '@typescript-eslint/parser': 5.56.0_vgl77cfdswitgr47lm5swmv43m
   autoprefixer: 10.4.14_postcss@8.4.21
-  drizzle-kit: 0.17.0-edc772a
+  drizzle-kit: 0.17.1-6474464
   eslint: 8.36.0
   eslint-config-next: 13.2.4_vgl77cfdswitgr47lm5swmv43m
   postcss: 8.4.21
@@ -150,15 +150,6 @@ packages:
   /@humanwhocodes/object-schema/1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
-
-  /@next-auth/prisma-adapter/1.0.5_next-auth@4.20.1:
-    resolution: {integrity: sha512-VqMS11IxPXrPGXw6Oul6jcyS/n8GLOWzRMrPr3EMdtD6eOalM6zz05j08PcNiis8QzkfuYnCv49OvufTuaEwYQ==}
-    peerDependencies:
-      '@prisma/client': '>=2.26.0 || >=3'
-      next-auth: ^4
-    dependencies:
-      next-auth: 4.20.1_ld2jel3hspngo3u5lti2kgl2sq
-    dev: false
 
   /@next/env/13.2.4:
     resolution: {integrity: sha512-+Mq3TtpkeeKFZanPturjcXt+KHfKYnLlX6jMLyCrmpq6OOs4i1GqBOAauSkii9QeKCMTYzGppar21JU57b/GEA==}
@@ -1044,6 +1035,11 @@ packages:
       esutils: 2.0.3
     dev: true
 
+  /dotenv/16.0.3:
+    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
+    engines: {node: '>=12'}
+    dev: false
+
   /dreamopt/0.8.0:
     resolution: {integrity: sha512-vyJTp8+mC+G+5dfgsY+r3ckxlz+QMX40VjPQsZc5gxVAxLmi64TBoVkP54A/pRAXMXsbu2GMMBrZPxNv23waMg==}
     engines: {node: '>=0.4.0'}
@@ -1051,8 +1047,8 @@ packages:
       wordwrap: 1.0.0
     dev: true
 
-  /drizzle-kit/0.17.0-edc772a:
-    resolution: {integrity: sha512-gXE3u4ZMi1HeAE+wstYShqCoKhcYOTEvp42V3/Ypd+YK8cd+fdbqKDFW4s9rSPcu0TUCXf/F5mPO6Lf8q+kEgw==}
+  /drizzle-kit/0.17.1-6474464:
+    resolution: {integrity: sha512-sdiI7hjUktRQ6p0L9HE1tZ+BqqZFXrMtLxlANAECD/fUf33FrwMpgmW52tB5QtUi0C0rU3ktHus/6zoEO6gIcw==}
     hasBin: true
     dependencies:
       camelcase: 7.0.1
@@ -1069,23 +1065,25 @@ packages:
       - supports-color
     dev: true
 
-  /drizzle-orm/0.22.0_mysql2@3.2.0:
-    resolution: {integrity: sha512-oZ/CNbv3NXoCxmBWTPNAZHZkuzhacT+eXM0ywemkHSTiqEJe79VQ1jvGVd0fQthfOt1UHRMuAW0CeIizhQpb2Q==}
+  /drizzle-orm/0.23.2_mysql2@3.2.0:
+    resolution: {integrity: sha512-GSOhOc+gGSMsf3eyBzL1Yb0g0M3pOurWmFI1lVhOrmMQCVuA/smJgYSy4UeTzBV521+J+emiFaSKSomEmc+fog==}
     peerDependencies:
-      '@aws-sdk/client-rds-data': '>=3 <4'
+      '@aws-sdk/client-rds-data': '>=3'
       '@cloudflare/workers-types': '>=3'
-      '@neondatabase/serverless': '>=0.1 <0.2'
-      '@planetscale/database': '>=1 <2'
+      '@neondatabase/serverless': '>=0.1'
+      '@planetscale/database': '>=1'
       '@types/better-sqlite3': '*'
       '@types/pg': '*'
       '@types/sql.js': '*'
-      better-sqlite3: '>=7 <9'
+      better-sqlite3: '>=7'
       bun-types: '*'
-      mysql2: '>=2 <3'
-      pg: '>=8 <9'
-      postgres: '>=3 <4'
-      sql.js: '>=1 <2'
-      sqlite3: '>=5 <6'
+      knex: '*'
+      kysely: '*'
+      mysql2: '>=2'
+      pg: '>=8'
+      postgres: '>=3'
+      sql.js: '>=1'
+      sqlite3: '>=5'
     peerDependenciesMeta:
       '@aws-sdk/client-rds-data':
         optional: true
@@ -1104,6 +1102,10 @@ packages:
       better-sqlite3:
         optional: true
       bun-types:
+        optional: true
+      knex:
+        optional: true
+      kysely:
         optional: true
       mysql2:
         optional: true
@@ -1493,7 +1495,7 @@ packages:
       eslint: 8.36.0
       eslint-import-resolver-node: 0.3.7
       eslint-import-resolver-typescript: 3.5.3_eakrjjutlgqjxe5ydhtnd4qdmy
-      eslint-plugin-import: 2.27.5_as6wyplljmmarlclp2tx3tj6rq
+      eslint-plugin-import: 2.27.5_cnkxirszkzb4o6ts7gbclno24e
       eslint-plugin-jsx-a11y: 6.7.1_eslint@8.36.0
       eslint-plugin-react: 7.32.2_eslint@8.36.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.36.0
@@ -1523,7 +1525,7 @@ packages:
       debug: 4.3.4
       enhanced-resolve: 5.12.0
       eslint: 8.36.0
-      eslint-plugin-import: 2.27.5_as6wyplljmmarlclp2tx3tj6rq
+      eslint-plugin-import: 2.27.5_cnkxirszkzb4o6ts7gbclno24e
       get-tsconfig: 4.4.0
       globby: 13.1.3
       is-core-module: 2.11.0
@@ -1533,7 +1535,7 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-module-utils/2.7.4_ab4tb467oik4rhsaavmctlutka:
+  /eslint-module-utils/2.7.4_tf7h2azriypc3gaglz256o6pea:
     resolution: {integrity: sha512-j4GT+rqzCoRKHwURX7pddtIPGySnX9Si/cgMI5ztrcqOPtk5dDEeZ34CQVPphnqkJytlc97Vuk05Um2mJ3gEQA==}
     engines: {node: '>=4'}
     peerDependencies:
@@ -1558,12 +1560,11 @@ packages:
       debug: 3.2.7
       eslint: 8.36.0
       eslint-import-resolver-node: 0.3.7
-      eslint-import-resolver-typescript: 3.5.3_eakrjjutlgqjxe5ydhtnd4qdmy
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /eslint-plugin-import/2.27.5_as6wyplljmmarlclp2tx3tj6rq:
+  /eslint-plugin-import/2.27.5_cnkxirszkzb4o6ts7gbclno24e:
     resolution: {integrity: sha512-LmEt3GVofgiGuiE+ORpnvP+kAm3h6MLZJ4Q5HCyHADofsb4VzXFsRiWj3c0OFiV+3DWFh0qg3v9gcPlfc3zRow==}
     engines: {node: '>=4'}
     peerDependencies:
@@ -1581,7 +1582,7 @@ packages:
       doctrine: 2.1.0
       eslint: 8.36.0
       eslint-import-resolver-node: 0.3.7
-      eslint-module-utils: 2.7.4_ab4tb467oik4rhsaavmctlutka
+      eslint-module-utils: 2.7.4_tf7h2azriypc3gaglz256o6pea
       has: 1.0.3
       is-core-module: 2.11.0
       is-glob: 4.0.3

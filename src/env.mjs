@@ -5,7 +5,6 @@ import { z } from "zod";
  * built with invalid env vars.
  */
 const server = z.object({
-  DATABASE_URL: z.string().url(),
   DB_HOST: z.string(),
   DB_USERNAME: z.string(),
   DB_PASSWORD: z.string(),
@@ -42,7 +41,6 @@ const client = z.object({
  * @type {Record<keyof z.infer<typeof server> | keyof z.infer<typeof client>, string | undefined>}
  */
 const processEnv = {
-  DATABASE_URL: process.env.DATABASE_URL,
   DB_HOST: process.env.DB_HOST,
   DB_USERNAME: process.env.DB_USERNAME,
   DB_PASSWORD: process.env.DB_PASSWORD,

@@ -1,4 +1,0 @@
-{
-  "schema": ["./src/db/schema.ts", "./src/db/auth.ts"],
-  "connectionString": "mysql://user:myverysecretpassword@localhost:3306/mydb"
-}
