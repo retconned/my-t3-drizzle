@@ -1,14 +1,18 @@
 import type { Adapter } from "next-auth/adapters";
-import cuid from "cuid";
 import { and, eq } from "drizzle-orm/expressions";
 import { type MySql2Database } from "drizzle-orm/mysql2";
+import { init } from "@paralleldrive/cuid2";
 import { accounts, sessions, users, verificationTokens } from "@/db/auth";
+
+const createId = init({
+  length: 24,
+});
 
 export function DrizzleAdapter(db: MySql2Database): Adapter {
   return {
     async createUser(userData) {
       await db.insert(users).values({
-        id: cuid(),
+        id: "c" + createId(),
         email: userData.email,
         emailVerified: userData.emailVerified,
         name: userData.name,
@@ -73,7 +77,7 @@ export function DrizzleAdapter(db: MySql2Database): Adapter {
     },
     async linkAccount(account) {
       await db.insert(accounts).values({
-        id: cuid(),
+        id: "c" + createId(),
         provider: account.provider,
         providerAccountId: account.providerAccountId,
         type: account.type,
@@ -100,7 +104,7 @@ export function DrizzleAdapter(db: MySql2Database): Adapter {
     },
     async createSession(data) {
       await db.insert(sessions).values({
-        id: cuid(),
+        id: "c" + createId(),
         expires: data.expires,
         sessionToken: data.sessionToken,
         userId: data.userId,
