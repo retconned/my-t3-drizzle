@@ -7,7 +7,7 @@
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start",
-    "db:push": "pnpm drizzle-kit push:mysql --config drizzle.config.ts"
+    "db:push": "drizzle-kit push:mysql --config drizzle.config.ts"
   },
   "dependencies": {
     "@paralleldrive/cuid2": "^2.2.0",
