@@ -26,8 +26,8 @@ dependencies:
     specifier: ^16.0.3
     version: 16.0.3
   drizzle-orm:
-    specifier: ^0.23.2
-    version: 0.23.2(mysql2@3.2.0)
+    specifier: ^0.25.4
+    version: 0.25.4(mysql2@3.2.0)
   mysql2:
     specifier: ^3.2.0
     version: 3.2.0
@@ -76,8 +76,8 @@ devDependencies:
     specifier: ^10.4.14
     version: 10.4.14(postcss@8.4.21)
   drizzle-kit:
-    specifier: 0.17.1-6474464
-    version: 0.17.1-6474464
+    specifier: 0.17.6-76e73f3
+    version: 0.17.6-76e73f3
   eslint:
     specifier: ^8.36.0
     version: 8.36.0
@@ -1082,8 +1082,8 @@ packages:
       wordwrap: 1.0.0
     dev: true
 
-  /drizzle-kit@0.17.1-6474464:
-    resolution: {integrity: sha512-sdiI7hjUktRQ6p0L9HE1tZ+BqqZFXrMtLxlANAECD/fUf33FrwMpgmW52tB5QtUi0C0rU3ktHus/6zoEO6gIcw==}
+  /drizzle-kit@0.17.6-76e73f3:
+    resolution: {integrity: sha512-HmsTYbm4Y3gfv2jlzRQ04mbepnP9eKHWWFPnzEInrVEJJ85k0hxldGpbql03flZPII4W0z5FwuGUC9ROOLhVNw==}
     hasBin: true
     dependencies:
       camelcase: 7.0.1
@@ -1100,16 +1100,18 @@ packages:
       - supports-color
     dev: true
 
-  /drizzle-orm@0.23.2(mysql2@3.2.0):
-    resolution: {integrity: sha512-GSOhOc+gGSMsf3eyBzL1Yb0g0M3pOurWmFI1lVhOrmMQCVuA/smJgYSy4UeTzBV521+J+emiFaSKSomEmc+fog==}
+  /drizzle-orm@0.25.4(mysql2@3.2.0):
+    resolution: {integrity: sha512-vURs2SqDh5pk81WWE4hR8gFKDTRmCK4FbaUGsZoljKnjKvMrjlA5xFPGiCih4/1XKqnOgSuh+I6T9KGBjYcPAA==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
       '@cloudflare/workers-types': '>=3'
+      '@libsql/client': '*'
       '@neondatabase/serverless': '>=0.1'
       '@planetscale/database': '>=1'
       '@types/better-sqlite3': '*'
       '@types/pg': '*'
       '@types/sql.js': '*'
+      '@vercel/postgres': '*'
       better-sqlite3: '>=7'
       bun-types: '*'
       knex: '*'
@@ -1124,6 +1126,8 @@ packages:
         optional: true
       '@cloudflare/workers-types':
         optional: true
+      '@libsql/client':
+        optional: true
       '@neondatabase/serverless':
         optional: true
       '@planetscale/database':
@@ -1133,6 +1137,8 @@ packages:
       '@types/pg':
         optional: true
       '@types/sql.js':
+        optional: true
+      '@vercel/postgres':
         optional: true
       better-sqlite3:
         optional: true
