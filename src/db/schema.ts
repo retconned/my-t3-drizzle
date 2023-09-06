@@ -1,7 +1,22 @@
-import { mysqlTable, timestamp, varchar } from "drizzle-orm/mysql-core";
+import {
+  mysqlTableCreator,
+  serial,
+  timestamp,
+  uniqueIndex,
+  varchar,
+} from "drizzle-orm/mysql-core";
 
-export const example = mysqlTable("example", {
-  id: varchar("id", { length: 191 }).primaryKey().notNull(),
-  created_at: timestamp("created_at").notNull().defaultNow().onUpdateNow(),
-  updated_at: timestamp("updated_at").notNull().defaultNow().onUpdateNow(),
-});
+const mysqlTable = mysqlTableCreator((name) => `project1_${name}`);
+
+export const example = mysqlTable(
+  "example",
+  {
+    id: serial("id").primaryKey(),
+    name: varchar("name", { length: 256 }),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updatedAt").onUpdateNow(),
+  },
+  (example) => ({
+    nameIndex: uniqueIndex("name_idx").on(example.name),
+  }),
+);

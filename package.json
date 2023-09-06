@@ -14,22 +14,22 @@
     "db:generate": "drizzle-kit generate:mysql --config drizzle.config.ts"
   },
   "dependencies": {
+    "@paralleldrive/cuid2": "^2.2.1",
     "@t3-oss/env-nextjs": "^0.6.0",
     "@tanstack/react-query": "^4.29.25",
     "@trpc/client": "^10.34.0",
     "@trpc/next": "^10.34.0",
     "@trpc/react-query": "^10.34.0",
     "@trpc/server": "^10.34.0",
+    "dotenv": "^16.0.3",
+    "drizzle-orm": "^0.28.6",
+    "mysql2": "^3.5.2",
     "next": "^13.4.13",
     "next-auth": "^4.22.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "superjson": "^1.13.1",
-    "zod": "^3.21.4",
-    "@paralleldrive/cuid2": "^2.2.0",
-    "dotenv": "^16.0.3",
-    "drizzle-orm": "^0.26.3",
-    "mysql2": "^3.2.0"
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@types/eslint": "^8.44.2",
@@ -38,14 +38,14 @@
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.3.0",
     "@typescript-eslint/parser": "^6.3.0",
+    "autoprefixer": "^10.4.14",
+    "drizzle-kit": "^0.19.13",
     "eslint": "^8.47.0",
     "eslint-config-next": "^13.4.13",
+    "postcss": "^8.4.27",
     "prettier": "^3.0.0",
     "prettier-plugin-tailwindcss": "^0.5.1",
     "tailwindcss": "^3.3.3",
-    "postcss": "^8.4.27",
-    "autoprefixer": "^10.4.14",
-    "drizzle-kit": "0.18.1",
     "typescript": "^5.1.6"
   },
   "ct3aMetadata": {

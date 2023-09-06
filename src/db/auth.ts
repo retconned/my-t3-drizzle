@@ -1,102 +1,81 @@
+import { relations } from "drizzle-orm";
 import {
-  datetime,
-  index,
   int,
-  mysqlTable,
-  text,
+  mysqlTableCreator,
+  primaryKey,
   timestamp,
-  uniqueIndex,
   varchar,
 } from "drizzle-orm/mysql-core";
+import { type AdapterAccount } from "next-auth/adapters";
+
+/**
+ * This is an example of how to use the multi-project schema feature of Drizzle ORM. Use the same
+ * database instance for multiple projects.
+ *
+ * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
+ */
+const mysqlTable = mysqlTableCreator((name) => `project1_${name}`);
+
+export const users = mysqlTable("users", {
+  id: varchar("id", { length: 255 }).notNull().primaryKey(),
+  name: varchar("name", { length: 255 }),
+  email: varchar("email", { length: 255 }).notNull(),
+  emailVerified: timestamp("emailVerified", { mode: "date" }),
+  image: varchar("image", { length: 255 }),
+  created_at: timestamp("created_at").notNull().defaultNow(),
+  updated_at: timestamp("updated_at").notNull().defaultNow().onUpdateNow(),
+});
+
+export const usersRelations = relations(users, ({ many }) => ({
+  accounts: many(accounts),
+}));
 
 export const accounts = mysqlTable(
   "accounts",
   {
-    id: varchar("id", { length: 191 }).primaryKey().notNull(),
-    userId: varchar("userId", { length: 191 }).notNull(),
-    type: varchar("type", { length: 191 }).notNull(),
-    provider: varchar("provider", { length: 191 }).notNull(),
-    providerAccountId: varchar("providerAccountId", { length: 191 }).notNull(),
-    access_token: text("access_token"),
-    expires_in: int("expires_in"),
-    id_token: text("id_token"),
-    refresh_token: text("refresh_token"),
-    refresh_token_expires_in: int("refresh_token_expires_in"),
-    scope: varchar("scope", { length: 191 }),
-    token_type: varchar("token_type", { length: 191 }),
-    createdAt: timestamp("createdAt").defaultNow().onUpdateNow().notNull(),
-    updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+    userId: varchar("userId", { length: 255 }).notNull(),
+    type: varchar("type", { length: 255 })
+      .$type<AdapterAccount["type"]>()
+      .notNull(),
+    provider: varchar("provider", { length: 255 }).notNull(),
+    providerAccountId: varchar("providerAccountId", { length: 255 }).notNull(),
+    refresh_token: varchar("refresh_token", { length: 255 }),
+    access_token: varchar("access_token", { length: 255 }),
+    expires_at: int("expires_at"),
+    token_type: varchar("token_type", { length: 255 }),
+    scope: varchar("scope", { length: 255 }),
+    id_token: varchar("id_token", { length: 255 }),
+    session_state: varchar("session_state", { length: 255 }),
+    created_at: timestamp("created_at").notNull().defaultNow(),
+    updated_at: timestamp("updated_at").notNull().defaultNow().onUpdateNow(),
   },
   (account) => ({
-    providerProviderAccountIdIndex: uniqueIndex(
-      "accounts__provider__providerAccountId__idx"
-    ).on(account.provider, account.providerAccountId),
-    userIdIndex: index("accounts__userId__idx").on(account.userId),
-  })
+    compoundKey: primaryKey(account.provider, account.providerAccountId),
+  }),
 );
 
-export const sessions = mysqlTable(
-  "sessions",
-  {
-    id: varchar("id", { length: 191 }).primaryKey().notNull(),
-    sessionToken: varchar("sessionToken", { length: 191 }).notNull(),
-    userId: varchar("userId", { length: 191 }).notNull(),
-    expires: datetime("expires").notNull(),
-    created_at: timestamp("created_at").notNull().defaultNow().onUpdateNow(),
-    updated_at: timestamp("updated_at").notNull().defaultNow().onUpdateNow(),
-  },
-  (session) => ({
-    sessionTokenIndex: uniqueIndex("sessions__sessionToken__idx").on(
-      session.sessionToken
-    ),
-    userIdIndex: index("sessions__userId__idx").on(session.userId),
-  })
-);
+export const accountsRelations = relations(accounts, ({ one }) => ({
+  user: one(users, { fields: [accounts.userId], references: [users.id] }),
+}));
 
-export const users = mysqlTable(
-  "users",
-  {
-    id: varchar("id", { length: 191 }).primaryKey().notNull(),
-    name: varchar("name", { length: 191 }),
-    email: varchar("email", { length: 191 }).notNull(),
-    emailVerified: timestamp("emailVerified"),
-    image: varchar("image", { length: 191 }),
-    created_at: timestamp("created_at").notNull().defaultNow().onUpdateNow(),
-    updated_at: timestamp("updated_at").notNull().defaultNow().onUpdateNow(),
-  },
-  (user) => ({
-    emailIndex: uniqueIndex("users__email__idx").on(user.email),
-  })
-);
+export const sessions = mysqlTable("sessions", {
+  sessionToken: varchar("sessionToken", { length: 255 }).notNull().primaryKey(),
+  userId: varchar("userId", { length: 255 }).notNull(),
+  expires: timestamp("expires", { mode: "date" }).notNull(),
+});
+
+export const sessionsRelations = relations(sessions, ({ one }) => ({
+  user: one(users, { fields: [sessions.userId], references: [users.id] }),
+}));
 
 export const verificationTokens = mysqlTable(
-  "verification_tokens",
+  "verificationToken",
   {
-    identifier: varchar("identifier", { length: 191 }).primaryKey().notNull(),
-    token: varchar("token", { length: 191 }).notNull(),
-    expires: datetime("expires").notNull(),
-    created_at: timestamp("created_at").notNull().defaultNow().onUpdateNow(),
-    updated_at: timestamp("updated_at").notNull().defaultNow().onUpdateNow(),
+    identifier: varchar("identifier", { length: 255 }).notNull(),
+    token: varchar("token", { length: 255 }).notNull(),
+    expires: timestamp("expires", { mode: "date" }).notNull(),
   },
-  (verificationToken) => ({
-    tokenIndex: uniqueIndex("verification_tokens__token__idx").on(
-      verificationToken.token
-    ),
-  })
-);
-
-export const posts = mysqlTable(
-  "posts",
-  {
-    id: varchar("id", { length: 191 }).primaryKey().notNull(),
-    user_id: varchar("user_id", { length: 191 }).notNull(),
-    slug: varchar("slug", { length: 191 }).notNull(),
-    title: text("title").notNull(),
-    text: text("text").notNull(),
-    created_at: timestamp("created_at").notNull().defaultNow().onUpdateNow(),
-    updated_at: timestamp("updated_at").notNull().defaultNow().onUpdateNow(),
-  },
-  (post) => ({
-    userIdIndex: uniqueIndex("posts__user_id__idx").on(post.user_id),
-  })
+  (vt) => ({
+    compoundKey: primaryKey(vt.identifier, vt.token),
+  }),
 );
