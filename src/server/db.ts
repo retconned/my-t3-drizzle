@@ -4,10 +4,7 @@ import mysql, { type Pool } from "mysql2/promise";
 
 import * as auth from "../db/auth";
 import * as base from "../db/schema";
-
-import "dotenv/config";
-
-import { env } from "@/env.mjs";
+import { env } from "@/env.js";
 
 const globalForMySQL = globalThis as unknown as { poolConnection: Pool };
 
