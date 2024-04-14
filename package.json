@@ -44,7 +44,7 @@
     "eslint": "^8.54.0",
     "dotenv-cli": "^7.3.0",
     "eslint-config-next": "^13.5.4",
-    "mysql2": "^3.6.1",
+    "mysql2": "^3.9.4",
     "postcss": "^8.4.27",
     "prettier": "^3.1.0",
     "prettier-plugin-tailwindcss": "^0.5.7",
