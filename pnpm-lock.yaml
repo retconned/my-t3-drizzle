@@ -31,7 +31,7 @@ dependencies:
     version: 10.44.1
   drizzle-orm:
     specifier: ^0.29.1
-    version: 0.29.1(mysql2@3.9.7)
+    version: 0.29.1(mysql2@3.9.8)
   next:
     specifier: ^14.1.1
     version: 14.1.1(react-dom@18.2.0)(react@18.2.0)
@@ -89,8 +89,8 @@ devDependencies:
     specifier: ^13.5.4
     version: 13.5.6(eslint@8.55.0)(typescript@5.2.2)
   mysql2:
-    specifier: ^3.9.7
-    version: 3.9.7
+    specifier: ^3.9.8
+    version: 3.9.8
   postcss:
     specifier: ^8.4.27
     version: 8.4.29
@@ -1976,7 +1976,7 @@ packages:
       - utf-8-validate
     dev: true
 
-  /drizzle-orm@0.29.1(mysql2@3.9.7):
+  /drizzle-orm@0.29.1(mysql2@3.9.8):
     resolution: {integrity: sha512-yItc4unfHnk8XkDD3/bdC63vdboTY7e7I03lCF1OJYABXSIfQYU9BFTQJXMMovVeb3T1/OJWwfW/70T1XPnuUA==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
@@ -2038,7 +2038,7 @@ packages:
       sqlite3:
         optional: true
     dependencies:
-      mysql2: 3.9.7
+      mysql2: 3.9.8
     dev: false
 
   /electron-to-chromium@1.4.338:
@@ -3490,8 +3490,8 @@ packages:
     hasBin: true
     dev: true
 
-  /mysql2@3.9.7:
-    resolution: {integrity: sha512-KnJT8vYRcNAZv73uf9zpXqNbvBG7DJrs+1nACsjZP1HMJ1TgXEy8wnNilXAn/5i57JizXKtrUtwDB7HxT9DDpw==}
+  /mysql2@3.9.8:
+    resolution: {integrity: sha512-+5JKNjPuks1FNMoy9TYpl77f+5frbTklz7eb3XDwbpsERRLEeXiW2PDEkakYF50UuKU2qwfGnyXpKYvukv8mGA==}
     engines: {node: '>= 8.0'}
     dependencies:
       denque: 2.1.0
